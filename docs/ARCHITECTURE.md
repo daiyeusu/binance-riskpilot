@@ -1,6 +1,6 @@
-# RiskPilot v0.3 architecture
+# TriFrame Guard AI v0.3 architecture
 
-RiskPilot is an instruction-driven, read-only Codex agent. Binance Agent OS supplies all live market observations; local arithmetic computes the deterministic metrics in SCORING.md. Multiple datasets mean spot prices, candles and futures funding from Binance, not other providers.
+TriFrame Guard AI is an instruction-driven, read-only Codex agent. Binance Agent OS supplies all live market observations; local arithmetic computes the deterministic metrics in SCORING.md. Multiple datasets mean spot prices, candles and futures funding from Binance, not other providers.
 
 ## Data flow and latency
 
@@ -37,4 +37,6 @@ An audit expansion of an existing report may use its retained evidence only when
 
 Invalid/halted pairs receive validation results without numeric risk scores. Verified absence of a matching perpetual differs from discovery failure. Missing data remains UNAVAILABLE and never implies low risk. Complete MCP failure yields confidence 0. Never substitute another provider, request keys, access balances or invoke order, transfer, withdrawal or account-management operations.
 
-This release changes local instructions/documentation only. It has no standalone runtime, HTTP client, scoring engine or enforced server gateway. Speed depends on the Codex runtime and MCP response times; the demo video target is not a latency guarantee.
+The local dashboard uses Node built-in HTTP, filesystem and child-process modules with plain HTML/CSS/JavaScript. `POST /api/analyze` validates a simple pair string and starts `codex exec` in this project with the read-only sandbox. The agent still performs all market retrieval and scoring through the existing instructions and Binance Agent OS. The server makes no direct Binance HTTP requests.
+
+Only loopback access is served; JSON requests enforce local origins, bounded input and one active analysis. The final agent message is captured in a temporary file and removed after reading. The UI renders text safely and falls back to the full report if required fields are missing. No database, frontend framework, standalone scoring engine or enforced MCP permission gateway is added. Speed depends on Codex and MCP response times; the demo video target is not a latency guarantee.

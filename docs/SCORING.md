@@ -1,4 +1,4 @@
-# RiskPilot v0.3 scoring
+# TriFrame Guard AI v0.3 scoring
 
 Directional Bias describes observed price direction (BULLISH, BEARISH, NEUTRAL or MIXED). The Observed Market Risk Score measures observed market instability / trading-condition risk, NOT the probability that price will go down. A bearish market may have a LOW risk score when volatility, funding stress, conflicts and instability are low. Neither output is a forecast, probability of loss or trade recommendation.
 

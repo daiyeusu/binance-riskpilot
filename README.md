@@ -1,8 +1,26 @@
-# Binance RiskPilot v0.3 DEMO-READY
+# TriFrame Guard AI v0.3 DEMO-READY
 
-RiskPilot is a Track A mini-hackathon project: a specialized, read-only market-risk agent running inside Codex, powered by Binance Agent OS MCP. It turns spot prices, three candle timeframes and futures funding into a concise report with transparent deterministic scoring.
+TriFrame Guard AI is a Track A mini-hackathon project: a specialized, read-only market-risk agent running inside Codex, powered by Binance Agent OS MCP. It turns spot prices, three candle timeframes and futures funding into a concise report with transparent deterministic scoring.
 
-This is an instruction-driven agent, not a standalone application. AGENTS.md defines boundaries, prompts/RISKPILOT.md defines execution and report modes, and docs/SCORING.md is the canonical formula. No package installation or user-level configuration changes are needed.
+Conflict-aware market intelligence powered by Binance Agent OS.
+
+## Local dashboard
+
+From this project directory, run:
+
+```text
+node server.js
+```
+
+Open http://localhost:3000, enter a complete pair such as BNBUSDT, and click **RUN AGENT ANALYSIS**. Node.js and the existing signed-in `codex` CLI must be available on PATH, with Binance Agent OS already connected in the CLI environment. No dependencies or installation are required.
+
+The local Node server invokes `codex exec --cd <project> --sandbox read-only --ephemeral --color never --output-last-message <temporary file> -`, supplying the analysis prompt on stdin. Windows uses PowerShell to invoke the installed Codex shim. AGENTS.md defines boundaries, prompts/RISKPILOT.md defines report modes, and docs/SCORING.md remains the canonical formula. No scoring runs in the browser.
+
+The bridge accepts one request at a time and times out after 15 minutes. It returns the final agent response, not the CLI event/debug transcript. Temporary report files are removed afterward. No database or report history is maintained. Requests run independently, so follow-up audit context is not retained. If a field cannot be parsed, the dashboard shows the raw report. It preserves partial, unavailable and provisional qualifiers.
+
+CLI authentication, model availability, MCP access and latency depend on the existing local setup. A connection available in another Codex client is not necessarily available to this CLI. Non-interactive execution cannot resolve interactive approval/sign-in prompts. The read-only filesystem sandbox does not enforce MCP operation permissions: the existing public-operation allowlist remains an agent instruction, not a separate permission gateway. No MCP configuration is changed and no trading flow is added.
+
+Implementation verification covers server startup, local page/assets and JavaScript syntax only; no live Binance analysis was run.
 
 ## Run a 60-90 second demo
 
@@ -29,7 +47,7 @@ Explicit audit requests:
 ```text
 Analyze BTCUSDT full
 Analyze BTCUSDT audit
-Show full RiskPilot report for BTCUSDT
+Show full TriFrame Guard AI report for BTCUSDT
 ```
 
 Audit mode adds detailed observations, computed-metric tables, all score contributions and confidence deductions, exact MCP arguments, candle coverage and provenance. Both modes retrieve and evaluate the same evidence. Full/audit changes presentation, not scoring or safety.
@@ -50,9 +68,9 @@ Rounded risk bands: LOW 0-24, MODERATE 25-49, HIGH 50-74, EXTREME 75-100. Confid
 
 ## Safety and limitations
 
-Public live market data comes only from Binance Agent OS. No direct Binance REST/HTTP, other data providers, web market searches, invented values or old snapshots represented as live data. RiskPilot never places/cancels orders, transfers, borrows, repays, withdraws, reads balances or manages accounts. Trade requests receive research only; no API keys are requested.
+Public live market data comes only from Binance Agent OS. No direct Binance REST/HTTP, other data providers, web market searches, invented values or old snapshots represented as live data. TriFrame Guard AI never places/cancels orders, transfers, borrows, repays, withdraws, reads balances or manages accounts. Trade requests receive research only; no API keys are requested.
 
-These are agent instructions, not an enforced MCP permission gateway. The server may expose tools outside the project's allowlist; RiskPilot must not call them. There is no standalone calculation engine or automated test suite. Scores are research heuristics, not calibrated probabilities or validated forecasts. No portfolio, news, order-book liquidity or liquidation analysis is included.
+These are agent instructions, not an enforced MCP permission gateway. The server may expose tools outside the project's allowlist; TriFrame Guard AI must not call them. There is no standalone calculation engine or automated test suite. Scores are research heuristics, not calibrated probabilities or validated forecasts. No portfolio, news, order-book liquidity or liquidation analysis is included.
 
 The v0.3 documentation upgrade does not run a live analysis or benchmark. See docs/ARCHITECTURE.md, docs/SCORING.md and examples/DEMO_PROMPTS.md. When project instructions are not loaded, supply AGENTS.md, prompts/RISKPILOT.md and docs/SCORING.md together.
 

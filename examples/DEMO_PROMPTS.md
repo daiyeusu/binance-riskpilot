@@ -1,4 +1,4 @@
-# RiskPilot v0.3 demo prompts
+# TriFrame Guard AI v0.3 demo prompts
 
 Use these with the project open in Codex and Binance Agent OS connected. New analysis commands request fresh public observations; none authorizes trading or account actions.
 
@@ -17,7 +17,7 @@ Expected: v0.3 summary, three Key Signals, Market Snapshot, 2-4 interpretation s
 ```text
 Analyze BTCUSDT full
 Analyze BTCUSDT audit
-Show full RiskPilot report for BTCUSDT
+Show full TriFrame Guard AI report for BTCUSDT
 ```
 
 Expected: a fresh snapshot with the same methodology plus full observations, calculated metrics, score and confidence breakdowns, exact MCP calls, candle coverage and provenance.
